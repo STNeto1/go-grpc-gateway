@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pb.v1;
+
+option go_package = "__product/gen/product/v1;productpb";
+
+message Product {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  float price = 4;
+  string user_id = 5;
+  string user_name = 6;
+}

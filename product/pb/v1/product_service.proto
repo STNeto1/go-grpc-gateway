@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package pb.v1;
+
+import "pb/v1/product.proto";
+
+option go_package = "__product/gen/product/v1;productpb";
+
+service ProductService {
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+  rpc ListProduct(ListProductRequest) returns (ListProductResponse);
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+  rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse);
+}
+
+// Create product
+message CreateProductRequest {
+  string title = 1;
+  string description = 2;
+  float price = 3;
+  string user_id = 4;
+  string user_name = 5;
+}
+
+message CreateProductResponse {
+  bool success = 1;
+}
+
+// Get product
+message GetProductRequest {
+  string id = 1;
+}
+
+message GetProductResponse {
+  Product product = 1;
+}
+
+// List product
+message ListProductRequest {
+  string term = 1;
+}
+
+message ListProductResponse {
+  repeated Product products = 1;
+}
+
+// Update product
+message UpdateProductRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  float price = 4;
+}
+
+message UpdateProductResponse {
+  bool success = 1;
+}
+
+// Delete product
+message DeleteProductRequest {
+  string id = 1;
+}
+
+message DeleteProductResponse {
+  bool success = 1;
+}
