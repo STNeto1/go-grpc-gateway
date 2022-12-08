@@ -2,6 +2,7 @@ package main
 
 import (
 	userpb "__user/gen/pb/user/v1"
+	"__user/pkg/common/database"
 	"__user/pkg/common/gimpl"
 	"log"
 	"net"
@@ -10,6 +11,8 @@ import (
 )
 
 func main() {
+	_ = database.InitDB()
+
 	lis, err := net.Listen("tcp", "localhost:3000")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
