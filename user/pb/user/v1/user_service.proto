@@ -28,15 +28,15 @@ message LoginRequest {
 }
 
 message LoginResponse {
-  string token = 1;
+  User user = 1;
 }
 
 message RegisterRequest {
   string name = 1;
   string email = 2;
-  string message = 3;
+  string password = 3;
 }
 
 message RegisterResponse {
-  string token = 1;
+  User user = 1;
 }

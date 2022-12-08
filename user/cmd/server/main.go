@@ -11,14 +11,14 @@ import (
 )
 
 func main() {
-	_ = database.InitDB()
+	e := database.InitDB()
 
 	lis, err := net.Listen("tcp", "localhost:3000")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	userService := gimpl.NewUserService()
+	userService := gimpl.NewUserService(e)
 
 	grpcServer := grpc.NewServer()
 	userpb.RegisterUserServiceServer(grpcServer, userService)

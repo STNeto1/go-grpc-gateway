@@ -6,6 +6,7 @@ require (
 	entgo.io/ent v0.11.4
 	github.com/google/uuid v1.3.0
 	github.com/lib/pq v1.10.7
+	golang.org/x/crypto v0.0.0-20220517005047-85d78b3ac167
 	google.golang.org/grpc v1.51.0
 	google.golang.org/protobuf v1.28.1
 )
