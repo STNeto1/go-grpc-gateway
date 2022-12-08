@@ -3,7 +3,7 @@ package auth
 import (
 	"__lib/exceptions"
 	v "__lib/validator"
-	userpb "__user/gen/pb/user/v1"
+	userpb "__user/gen/pb/v1"
 	"net/http"
 	"time"
 

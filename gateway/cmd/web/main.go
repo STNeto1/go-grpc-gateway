@@ -3,6 +3,7 @@ package main
 import (
 	"__gateway/pkg/auth"
 	"__gateway/pkg/common/utils"
+	"__gateway/pkg/product"
 	v "__lib/validator"
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
@@ -10,10 +11,11 @@ import (
 )
 
 func main() {
-	grpcConn := utils.InitGrpcConn()
-	uc := utils.InitGrpcUserClient(grpcConn)
+	uConn, uc := utils.InitGrpcUserClient()
+	pConn, pc := utils.InitGrpcProductClient()
 
-	defer grpcConn.Close()
+	defer uConn.Close()
+	defer pConn.Close()
 
 	e := echo.New()
 	e.Validator = &v.CustomValidator{Validator: validator.New()}
@@ -25,6 +27,7 @@ func main() {
 	}))
 
 	auth.RegisterHandlers(e, uc)
+	product.RegisterHandlers(e, uc, pc)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }

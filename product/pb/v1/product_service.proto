@@ -51,6 +51,7 @@ message UpdateProductRequest {
   string title = 2;
   string description = 3;
   float price = 4;
+  string user_id = 5;
 }
 
 message UpdateProductResponse {
@@ -60,6 +61,7 @@ message UpdateProductResponse {
 // Delete product
 message DeleteProductRequest {
   string id = 1;
+  string user_id = 2;
 }
 
 message DeleteProductResponse {

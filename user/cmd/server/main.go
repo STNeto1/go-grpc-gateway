@@ -1,7 +1,7 @@
 package main
 
 import (
-	userpb "__user/gen/pb/user/v1"
+	userpb "__user/gen/pb/v1"
 	"__user/pkg/common/database"
 	"__user/pkg/common/gimpl"
 	"log"

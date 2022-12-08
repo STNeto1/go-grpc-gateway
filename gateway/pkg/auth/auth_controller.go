@@ -2,7 +2,7 @@ package auth
 
 import (
 	"__gateway/pkg/common/middlewares"
-	userpb "__user/gen/pb/user/v1"
+	userpb "__user/gen/pb/v1"
 
 	"github.com/labstack/echo/v4"
 )
@@ -23,5 +23,5 @@ func RegisterHandlers(e *echo.Echo, uc userpb.UserServiceClient) {
 
 	authGroup.POST("/login", h.login)
 	authGroup.POST("/register", h.register)
-	authGroup.GET("/profile", h.profile, middlewares.JWT(h.secret))
+	authGroup.GET("/profile", h.profile, middlewares.JWT())
 }

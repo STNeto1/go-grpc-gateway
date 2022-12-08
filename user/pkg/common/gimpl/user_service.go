@@ -3,7 +3,7 @@ package gimpl
 import (
 	"__user/ent"
 	"__user/ent/user"
-	userpb "__user/gen/pb/user/v1"
+	userpb "__user/gen/pb/v1"
 	"context"
 
 	"github.com/google/uuid"

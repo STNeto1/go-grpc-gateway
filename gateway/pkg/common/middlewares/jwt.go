@@ -3,6 +3,7 @@ package middlewares
 // echo middleware to check jwt
 
 import (
+	"__gateway/pkg/common/utils"
 	"__lib/exceptions"
 	"net/http"
 	"strings"
@@ -11,7 +12,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func JWT(secret string) func(next echo.HandlerFunc) echo.HandlerFunc {
+func JWT() func(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(next echo.HandlerFunc) echo.HandlerFunc {
 		return func(c echo.Context) error {
 			// get header from header
@@ -33,7 +34,7 @@ func JWT(secret string) func(next echo.HandlerFunc) echo.HandlerFunc {
 
 			// validate token
 			claims, err := jwt.Parse(splits[1], func(t *jwt.Token) (interface{}, error) {
-				return []byte(secret), nil
+				return utils.GetJwtSecret(), nil
 			})
 
 			if err != nil {

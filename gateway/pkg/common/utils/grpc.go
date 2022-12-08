@@ -1,15 +1,15 @@
 package utils
 
 import (
-	userpb "__user/gen/pb/user/v1"
+	productpb "__product/gen/pb/v1"
+	userpb "__user/gen/pb/v1"
 	"log"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-func InitGrpcConn() *grpc.ClientConn {
-
+func InitGrpcUserClient() (*grpc.ClientConn, userpb.UserServiceClient) {
 	opts := []grpc.DialOption{
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	}
@@ -19,11 +19,22 @@ func InitGrpcConn() *grpc.ClientConn {
 		log.Fatalln("Failed to dial user service: ", err)
 	}
 
-	return conn
-}
-
-func InitGrpcUserClient(conn *grpc.ClientConn) userpb.UserServiceClient {
 	client := userpb.NewUserServiceClient(conn)
 
-	return client
+	return conn, client
+}
+
+func InitGrpcProductClient() (*grpc.ClientConn, productpb.ProductServiceClient) {
+	opts := []grpc.DialOption{
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+	}
+
+	conn, err := grpc.Dial("localhost:4000", opts...)
+	if err != nil {
+		log.Fatalln("Failed to dial product service: ", err)
+	}
+
+	client := productpb.NewProductServiceClient(conn)
+
+	return conn, client
 }
