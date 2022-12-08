@@ -4,3 +4,6 @@ plugins:
   - name: go # Synonym with: protoc-gen-<name>
     out: gen
     opt: paths=source_relative
+  - name: go-grpc
+    out: gen
+    opt: paths=source_relative
